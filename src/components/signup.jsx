@@ -33,7 +33,7 @@ const Signup = ({ toggleForm }) => {
         Sign Up
       </Typography>
       <Typography color="gray" className="mt-1 font-normal">
-        Enter your details to register.
+        Thank you for joining us!<br></br>Please fill in the form to proceed.
       </Typography>
 
       <form

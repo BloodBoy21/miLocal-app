@@ -29,10 +29,10 @@ const Login = ({ toggleForm }) => {
   return (
     <Card color="transparent" shadow={false}>
       <Typography variant="h4" color="blue-gray">
-        Sign Up
+        Login
       </Typography>
       <Typography color="gray" className="mt-1 font-normal">
-        Enter your details to register.
+        Welcome back, login to continue.
       </Typography>
 
       <form
