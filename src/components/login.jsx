@@ -7,8 +7,10 @@ import {
   Typography
 } from '@material-tailwind/react'
 import { UseLogin } from '../hooks/user'
-
+import UserStore from '../storages/user'
+import Router from '../router'
 const Login = ({ toggleForm }) => {
+  const { setUser } = UserStore()
   const {
     register,
     handleSubmit,
@@ -18,7 +20,10 @@ const Login = ({ toggleForm }) => {
   const onSubmit = (data) => {
     mutate(data, {
       onSuccess: (data) => {
-        console.log(data)
+        setUser(data)
+        Router.navigate({
+          to: '/'
+        })
       }
     })
     if (error) {
