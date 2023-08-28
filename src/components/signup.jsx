@@ -7,6 +7,8 @@ import {
   Button,
   Typography
 } from '@material-tailwind/react'
+import UserStore from '../storages/user'
+import Router from '../router'
 import { UseRegister } from '../hooks/user'
 
 const Signup = ({ toggleForm }) => {
@@ -15,11 +17,15 @@ const Signup = ({ toggleForm }) => {
     handleSubmit,
     formState: { errors }
   } = useForm()
+  const { setUser } = UserStore()
   const { error, mutate } = UseRegister()
   const onSubmit = (body) => {
     mutate(body, {
       onSuccess: (data) => {
-        console.log(data)
+        setUser(data)
+        Router.navigate({
+          to: '/'
+        })
       }
     })
     if (error) {
