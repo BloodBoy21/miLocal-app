@@ -46,6 +46,7 @@ const StoreList = ({ stores = [] }) => {
           name={store.name}
           address={store.address}
           image={store.image}
+          storeId={store.store_id}
         />
       ))}
     </div>

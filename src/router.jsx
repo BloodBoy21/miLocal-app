@@ -1,5 +1,6 @@
 import Login from './pages/login'
 import App from './App'
+import Store from './pages/store'
 import { Router, Route, RootRoute } from '@tanstack/react-router'
 import LandingPage from './pages/landing'
 // Create a root route
@@ -19,7 +20,13 @@ const loginRoute = new Route({
   component: Login
 })
 
-const routeTree = rootRoute.addChildren([homeRoute, loginRoute])
+const storeRoute = new Route({
+  getParentRoute: () => rootRoute,
+  path: '/store/$storeId',
+  component: Store
+})
+
+const routeTree = rootRoute.addChildren([homeRoute, loginRoute, storeRoute])
 const router = new Router({ routeTree })
 
 export default router

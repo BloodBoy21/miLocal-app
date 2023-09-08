@@ -7,10 +7,19 @@ import {
   Button
 } from '@material-tailwind/react'
 import PropTypes from 'prop-types'
+import Router from '../router'
+
+const goToStore = (id) => {
+  Router.navigate({
+    to: `/store/${id}`
+  })
+}
+
 const CardStore = ({
   name,
   address,
-  image
+  image,
+  storeId
 }) => {
   return (
     <Card className="mt-6 w-96">
@@ -31,7 +40,7 @@ const CardStore = ({
         </Typography>
       </CardBody>
       <CardFooter className="pt-0">
-        <Button>
+        <Button color="blue-gray" onClick={() => goToStore(storeId)}>
           View
         </Button>
       </CardFooter>

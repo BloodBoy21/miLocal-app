@@ -17,3 +17,13 @@ export const getNearby = async ({
   })
   return data
 }
+
+export const getStore = async (storeId) => {
+  const { data } = await client.get(`/${storeId}/products`)
+  return data
+}
+
+export const getStoreInfo = async (storeId) => {
+  const { data } = await client.get(`/${storeId}`)
+  return data
+}
