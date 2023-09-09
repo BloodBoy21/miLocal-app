@@ -7,9 +7,29 @@ import {
   Button,
   Typography
 } from '@material-tailwind/react'
+import AlertNotification from './alert'
 import UserStore from '../storages/user'
 import Router from '../router'
 import { UseRegister } from '../hooks/user'
+
+const createAlert = (error) => {
+  const {
+    response: {
+      data: { detail }
+    }
+  } = error
+  const alerts = detail.map((error) => {
+    const { loc, msg } = error
+    const source = loc[1]
+    const message = `${source}: ${msg}`
+    return <AlertNotification type="error" message={message} key={loc.join('_')} />
+  })
+  return (
+    <div className="mb-4 box-border flex flex-col gap-2">
+      {alerts}
+    </div>
+  )
+}
 
 const Signup = ({ toggleForm }) => {
   const {
@@ -28,13 +48,11 @@ const Signup = ({ toggleForm }) => {
         })
       }
     })
-    if (error) {
-      console.log(error)
-    }
   }
 
   return (
-    <Card color="transparent" shadow={false}>
+    <Card color="transparent" shadow={false} className='flex flex-col justify-center items-center'>
+      {error && createAlert(error)}
       <Typography variant="h4" color="blue-gray">
         Sign Up
       </Typography>
@@ -48,7 +66,7 @@ const Signup = ({ toggleForm }) => {
       >
         <div className="mb-4 flex flex-col gap-3">
           <Input type="text" label="Name" {...register('first_name')} />
-          <Input type="text" label="Last name" {...register('first_name')} />
+          <Input type="text" label="Last name" {...register('last_name')} />
           <Input
             type="email"
             label="Email"
