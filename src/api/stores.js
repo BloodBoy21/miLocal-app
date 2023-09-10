@@ -18,8 +18,10 @@ export const getNearby = async ({
   return data
 }
 
-export const getStore = async (storeId) => {
-  const { data } = await client.get(`/${storeId}/products`)
+export const getStoreProducts = async (storeId, queryParams = {}) => {
+  const { data } = await client.get(`/${storeId}/products`, {
+    params: queryParams
+  })
   return data
 }
 

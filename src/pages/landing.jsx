@@ -18,7 +18,6 @@ const setLocationHook = ({ setLocation, refetch }) => {
   navigator.geolocation.getCurrentPosition(
     (position) => {
       const { latitude, longitude } = position.coords
-      console.log({ latitude, longitude })
       setLocation(latitude, longitude)
       refetch()
     },

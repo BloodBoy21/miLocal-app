@@ -1,5 +1,5 @@
 import { useQuery } from '@tanstack/react-query'
-import { getNearby, getStore, getStoreInfo } from '../api/stores'
+import { getNearby, getStoreProducts, getStoreInfo } from '../api/stores'
 
 const KEY = 'store'
 
@@ -14,8 +14,14 @@ export const useGetNearby = (
     refetchOnWindowFocus: false
   })
 }
-export const useGetStore = (storeId) => {
-  return useQuery([KEY, storeId], () => getStore(storeId), {
+export const useGetStoreProducts = (storeId, queryParams) => {
+  return useQuery([KEY, storeId], () => getStoreProducts(storeId, queryParams), {
+    enabled: !!storeId
+  })
+}
+
+export const useGetAllStoreProducts = (storeId) => {
+  return useQuery([KEY, storeId, 'all'], () => getStoreProducts(storeId), {
     enabled: !!storeId
   })
 }
