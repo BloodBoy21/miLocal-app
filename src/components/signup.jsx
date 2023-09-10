@@ -11,6 +11,7 @@ import AlertNotification from './alert'
 import UserStore from '../storages/user'
 import Router from '../router'
 import { UseRegister } from '../hooks/user'
+import _ from 'lodash'
 
 const createAlert = (error) => {
   const {
@@ -18,6 +19,7 @@ const createAlert = (error) => {
       data: { detail }
     }
   } = error
+  if (!_.isArray(detail)) return <AlertNotification type="error" message={detail} />
   const alerts = detail.map((error) => {
     const { loc, msg } = error
     const source = loc[1]
